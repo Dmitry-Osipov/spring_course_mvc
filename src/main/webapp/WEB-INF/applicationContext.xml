@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="com.osipov.spring.mvc" />  <!-- Указываем, что сканировать -->
+
+    <mvc:annotation-driven/>  <!-- Добавляем поддержку валидации, форматирования и т.д. -->
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- Благодаря префиксу и суффиксу не нужно указывать полное имя представления. Можно будет обращаться просто по
+        короткому имени. Например, myView вместо /WEB-INF/view/myView.jsp -->
+        <property name="prefix" value="/WEB-INF/view/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+</beans>

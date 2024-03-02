@@ -14,9 +14,8 @@
 <body>
     <h2>Dear Employee, you are WELCOME!!!</h2>
     <br>
-    <!-- Получение имени через jsp: -->
-    <!-- <p>Your name: ${param.employeeName}</p>  Вставляем имя работника, которое запомнили в предыдущем файле -->
-    <!-- Получение имени через spring: -->
-    <p>Your name: ${nameAttribute}</p>
+    <p>Your name: ${employee.name}</p>
+    <p>Your surname: ${employee.surname}</p>
+    <p>Your salary: ${employee.salary}</p>
 </body>
 </html>

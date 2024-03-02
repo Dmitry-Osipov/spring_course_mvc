@@ -2,8 +2,8 @@ package com.osipov.spring.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 // import javax.servlet.http.HttpServletRequest;  // Для Tomcat 10 требуется Jakarta Servlet. С Tomcat 9 Jakarta Servlet
 // не взаимодействует. P.s.: если мы хотим использовать HttpServletRequest.
@@ -27,19 +27,17 @@ public class MyController {
     }
 
     @RequestMapping("/askDetails")
-    public String askEmployeeDetails() {
+    public String askEmployeeDetails(Model model) {
+        model.addAttribute("employee", new Employee());  // Если заранее создать нового сотрудника и прописать ему
+        // поля сразу, то можно задать значения по умолчанию, которые потом можно будет изменить на сайте.
+
         return "ask-emp-details-view";
     }
 
     @RequestMapping("/showDetails")
-    public String showEmpDetails(@RequestParam("employeeName") String empName, Model model) {
-        // Добавили 2 обязательных параметра: имя сотрудника и модель. Имя сотрудника привязано строго к передаваемому
-        // полю html-файла (в данном случае employeeName). Таким образом, извлечение имени происходит под капотом, а
-        // мы работаем уже готовым значением.
-        empName = "Mr. " + empName + "!";
-        model.addAttribute("nameAttribute", empName);  // Добавляем изменённое имя в качестве атрибута в модель.
-        // Указываем название атрибута + значение.
-
+    public String showEmpDetails(@ModelAttribute("employee") Employee emp) {  // Показываем, что Employee - это модель.
+        // Здесь же можно изменять данные, которые мы передали на сайте. Например, увеличить salary, приписать Mr.
+        // к name и т.д.
         return "show-emp-details-view";
     }
 }

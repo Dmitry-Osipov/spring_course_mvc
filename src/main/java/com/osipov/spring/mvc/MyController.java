@@ -3,6 +3,7 @@ package com.osipov.spring.mvc;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;  // Для Tomcat 10 требуется Jakarta Servlet. С Tomcat 9 Jakarta Servlet
 // не взаимодействует
@@ -23,13 +24,13 @@ public class MyController {
     }
 
     @RequestMapping("/showDetails")
-    public String showEmpDetails(HttpServletRequest request, Model model) {  // Добавили 2 обязательных параметра:
-        // request и модель.
-        String empName = request.getParameter("employeeName");  // Получаем имя работника.
-        empName = "Mr. " + empName;
+    public String showEmpDetails(@RequestParam("employeeName") String empName, Model model) {
+        // Добавили 2 обязательных параметра: имя сотрудника и модель. Имя сотрудника привязано строго к передаваемому
+        // полю html-файла (в данном случае employeeName). Таким образом, извлечение имени происходит под капотом, а
+        // мы работаем уже готовым значением.
+        empName = "Mr. " + empName + "!";
         model.addAttribute("nameAttribute", empName);  // Добавляем изменённое имя в качестве атрибута в модель.
         // Указываем название атрибута + значение.
-        model.addAttribute("description", "- SENLA intern");
 
         return "show-emp-details-view";
     }

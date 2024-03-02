@@ -12,4 +12,14 @@ public class MyController {
         // именно String для возврата названия view.
         return "first-view";
     }
+
+    @RequestMapping("/askDetails")
+    public String askEmployeeDetails() {
+        return "ask-emp-details-view";
+    }
+
+    @RequestMapping("/showDetails")
+    public String showEmpDetails() {
+        return "show-emp-details-view";
+    }
 }

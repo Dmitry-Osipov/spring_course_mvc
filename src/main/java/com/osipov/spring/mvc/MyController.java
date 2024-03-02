@@ -1,7 +1,11 @@
 package com.osipov.spring.mvc;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;  // Для Tomcat 10 требуется Jakarta Servlet. С Tomcat 9 Jakarta Servlet
+// не взаимодействует
 
 @Controller
 public class MyController {
@@ -19,7 +23,14 @@ public class MyController {
     }
 
     @RequestMapping("/showDetails")
-    public String showEmpDetails() {
+    public String showEmpDetails(HttpServletRequest request, Model model) {  // Добавили 2 обязательных параметра:
+        // request и модель.
+        String empName = request.getParameter("employeeName");  // Получаем имя работника.
+        empName = "Mr. " + empName;
+        model.addAttribute("nameAttribute", empName);  // Добавляем изменённое имя в качестве атрибута в модель.
+        // Указываем название атрибута + значение.
+        model.addAttribute("description", "- SENLA intern");
+
         return "show-emp-details-view";
     }
 }

@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -15,11 +17,14 @@ import java.util.Map;
 @Setter
 @ToString
 public class Employee {
-    @Size(min = 2, message = "Name must be minimum 2 symbols")
+    @Size(min = 2, message = "Name must be minimum 2 symbols")  // Аннотация указывает размер. Возможные параметры: min,
+    // max, message.
     private String name;
     @NotBlank(message = "Surname is required field")  // Эта аннотация делает то же, что и аннотации NotEmpty и NotNull,
     // но ещё проверяет, чтобы поле не состояло из одних пробелов.
     private String surname;
+    @Min(value = 500, message = "Must be greater than 499")
+    @Max(value = 1000, message = "Must be less than 1001")
     private int salary;
     private String department;
     private Map<String, String> departments;
@@ -27,6 +32,8 @@ public class Employee {
     private Map<String, String> carBrands;
     private String[] languages;
     private Map<String, String> languageMap;
+    @Pattern(regexp = "\\+7\\(\\d{3}\\)\\d{3}-\\d{2}-\\d{2}", message = "Please use pattern +7(XXX)XXX-XX-XX")
+    private String phoneNumber;
 
     public Employee() {
         departments = new HashMap<>();

@@ -22,6 +22,7 @@
         <p>Surname&nbsp;<form:input path="surname" /></p>
         <form:errors path="surname" />
         <p>Salary&nbsp;<form:input path="salary" /></p>
+        <form:errors path="salary" />
         <p>
             Department&nbsp;
             <!-- Создание дроп-даун листа: -->
@@ -50,6 +51,9 @@
             Foreign language(-s)&nbsp;
             <form:checkboxes path="languages" items="${employee.languageMap}" />
         </p>
+        <p>Phone Number&nbsp;<form:input path="phoneNumber" /></p>
+        <form:errors path="phoneNumber" />
+        <br>
         <input type="submit" value="OK">
     </form:form>
 </body>

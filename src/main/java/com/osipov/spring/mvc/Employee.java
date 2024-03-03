@@ -1,5 +1,6 @@
 package com.osipov.spring.mvc;
 
+import com.osipov.spring.mvc.validation.CheckEmail;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -32,8 +33,11 @@ public class Employee {
     private Map<String, String> carBrands;
     private String[] languages;
     private Map<String, String> languageMap;
-    @Pattern(regexp = "\\+7\\(\\d{3}\\)\\d{3}-\\d{2}-\\d{2}", message = "Please use pattern +7(XXX)XXX-XX-XX")
+    @Pattern(regexp = "\\+7\\(\\d{3}\\)\\d{3}-\\d{2}-\\d{2}", message = "Please use pattern +7(XXX)XXX-XX-XX")  // Эта
+    // аннотация с регулярным выражением указывает, какой шаблон должен быть использован.
     private String phoneNumber;
+    @CheckEmail(value = "@abc.com", message = "Email must ends with @abc.com")
+    private String email;
 
     public Employee() {
         departments = new HashMap<>();
@@ -42,7 +46,7 @@ public class Employee {
         departments.put("Sales", "Sales");
 
         carBrands = new HashMap<>();
-        carBrands.put("BMW", "BWM");
+        carBrands.put("BMW", "BMW");
         carBrands.put("Audi", "Audi");
         carBrands.put("Mercedes-Benz", "Mercedes-Benz");
 

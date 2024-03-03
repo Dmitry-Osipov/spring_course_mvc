@@ -53,6 +53,8 @@
         </p>
         <p>Phone Number&nbsp;<form:input path="phoneNumber" /></p>
         <form:errors path="phoneNumber" />
+        <p>Email&nbsp;<form:input path="email" /></p>
+        <form:errors path="email" />
         <br>
         <input type="submit" value="OK">
     </form:form>

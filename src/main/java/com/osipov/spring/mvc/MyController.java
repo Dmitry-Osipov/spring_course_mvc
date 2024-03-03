@@ -2,8 +2,11 @@ package com.osipov.spring.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 // import javax.servlet.http.HttpServletRequest;  // Для Tomcat 10 требуется Jakarta Servlet. С Tomcat 9 Jakarta Servlet
 // не взаимодействует. P.s.: если мы хотим использовать HttpServletRequest.
@@ -30,14 +33,20 @@ public class MyController {
     public String askEmployeeDetails(Model model) {
         model.addAttribute("employee", new Employee());  // Если заранее создать нового сотрудника и прописать ему
         // поля сразу, то можно задать значения по умолчанию, которые потом можно будет изменить на сайте.
-
         return "ask-emp-details-view";
     }
 
     @RequestMapping("/showDetails")
-    public String showEmpDetails(@ModelAttribute("employee") Employee emp) {  // Показываем, что Employee - это модель.
-        // Здесь же можно изменять данные, которые мы передали на сайте. Например, увеличить salary, приписать Mr.
+    public String showEmpDetails(@Valid @ModelAttribute("employee") Employee emp, BindingResult bindingResult) {
+        // Показываем, что Employee - это модель, которая подвержена валидации. Результат валидации будет помещён в
+        // BindingResult. Важно отметить, что параметр BindingResult должен идти сразу после параметра модели, иначе
+        // процесс валидации может работать неверно.
+        // В теле метода можно изменять данные, которые мы передали на сайте. Например, увеличить salary, приписать Mr.
         // к name и т.д.
+        if (bindingResult.hasErrors()) {
+            return "ask-emp-details-view";  // Отображаем старую станицу, если при валидации были ошибки.
+        }
+
         return "show-emp-details-view";
     }
 }

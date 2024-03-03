@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Title</title>
+    <title>Introducing Page</title>
 </head>
 <body>
     <h2>I wish you luck in Spring MVC learning</h2>

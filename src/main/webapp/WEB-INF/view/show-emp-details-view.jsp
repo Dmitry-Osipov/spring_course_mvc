@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Title</title>
+    <title>Show Details</title>
 </head>
 <body>
     <h2>Dear Employee, you are WELCOME!!!</h2>
@@ -17,6 +17,6 @@
     <p>Your name: ${employee.name}</p>
     <p>Your surname: ${employee.surname}</p>
     <p>Your salary: ${employee.salary}</p>
-    <p>Your department: ${employee.department}</p>
+    <p>Your department: ${employee.department.description}</p>
 </body>
 </html>

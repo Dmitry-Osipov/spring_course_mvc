@@ -10,16 +10,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>Ask Details</title>
     </head>
     <body>
         <h2>Dear Employee, Please enter your details</h2>
         <br>
         <br>
         <form:form action="showDetails" modelAttribute="employee">
-            <p>Name <form:input path="name" /></p>
-            <p>Surname <form:input path="surname" /></p>
-            <p>Salary <form:input path="salary" /></p>
+            <p>Name&nbsp;<form:input path="name" /></p>
+            <p>Surname&nbsp;<form:input path="surname" /></p>
+            <p>Salary&nbsp;<form:input path="salary" /></p>
             <p>
                 Department&nbsp;
                 <!-- Создание дроп-даун листа: -->
@@ -28,12 +28,15 @@
                     <form:option value="Information Technology" label="IT" />
                     <form:option value="Human Resources" label="HR" />
                     <form:option value="Sales" label="Sales" />
-                    -->
-                    <!-- Вариант с использованием мапы в модели: -->
-                    <form:options items="${employee.departments}" />
-                    <!-- P.s.: разница ещё и в том, что теперь в форму выбора передаётся полное название, а в конечный
+                    Вариант с использованием мапы в модели:
+                    <form:options items="${employee.department}" />
+                    P.s.: разница ещё и в том, что теперь в форму выбора передаётся полное название, а в конечный
                     результат - сокращённое. Выше же у нас передавалось ровно наоборот. Т.е. чтобы выводилось как ранее,
-                    требуется полное название передавать в качестве ключа, а значением передать сокращённое название -->
+                    требуется полное название передавать в качестве ключа, а значением передать сокращённое название
+                    Вариант с использованием enum: -->
+                    <form:options items="${departments}" />
+                    <!-- Прим.: для перечислений всё работает корректно (название перечислений - в выпадающем списке,
+                    а полная расшифровка - на странице с информацией) + не надо enum нигде дополнительно добавлять. -->
                 </form:select>
             </p>
             <input type="submit" value="OK">

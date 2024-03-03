@@ -20,6 +20,22 @@
             <p>Name <form:input path="name" /></p>
             <p>Surname <form:input path="surname" /></p>
             <p>Salary <form:input path="salary" /></p>
+            <p>
+                Department&nbsp;
+                <!-- Создание дроп-даун листа: -->
+                <form:select path="department">
+                    <!-- Хардкод вариант:
+                    <form:option value="Information Technology" label="IT" />
+                    <form:option value="Human Resources" label="HR" />
+                    <form:option value="Sales" label="Sales" />
+                    -->
+                    <!-- Вариант с использованием мапы в модели: -->
+                    <form:options items="${employee.departments}" />
+                    <!-- P.s.: разница ещё и в том, что теперь в форму выбора передаётся полное название, а в конечный
+                    результат - сокращённое. Выше же у нас передавалось ровно наоборот. Т.е. чтобы выводилось как ранее,
+                    требуется полное название передавать в качестве ключа, а значением передать сокращённое название -->
+                </form:select>
+            </p>
             <input type="submit" value="OK">
         </form:form>
     </body>
